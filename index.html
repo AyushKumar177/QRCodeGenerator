@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            background-color: #000;
+        }
+
+        .text-container {
+            height: 45vh;
+            width: 100vw;
+            display: flex;
+            justify-content: justify;
+            align-items: justify;
+        }
+
+        .text-container h1{
+            margin: 0;
+            font-size: 130px;
+            color: rgba(225,225,225, .01);
+            background-image: url("https://images.unsplash.com/photo-1499195333224-3ce974eecb47?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2cf549433129d4227d1879347b9e78ce&auto=format&fit=crop&w=1248&q=80");
+            background-repeat: repeat;
+            -webkit-background-clip:text;
+            animation: animate 15s ease-in-out infinite;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            }
+
+        @keyframes animate {
+            0%, 100% {
+                background-position: left top;
+            }
+            25%{
+                background-position: right bottom;
+            }
+            50% {
+                background-position: left bottom;
+            }
+            75% {
+                background-position: right top;
+            }   
+        }
+        img{
+            
+            width: 300px;
+        }
+        select{
+            height: 30px;
+            width: 200px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        textarea{
+            height: 150px;
+            width: 200px;
+            resize: none;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        button{
+            height: 40px;
+            width: 200px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        hr{
+            color: aqua;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="grid">
+        <body>
+            <hr>
+            <div class="text-container">
+              <h1>QR CODE GENERATOR</h1>
+            </div>
+            <table align="center">
+                <tr>
+                    <td>
+                        <img src="" id="img" >
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <table>
+                        <tr><td><select id="size" >
+                                    <option value="0" selected>SELECT</option>
+                                    <option value="100">100x100</option>
+                                    <option value="150">150x150</option>
+                                    <option value="200">200x200</option>
+                                    <option value="250" >250x250</option>
+                                    <option value="300">300x300</option>
+                                </select>
+                        </td></tr>
+                        <tr><td><textarea placeholder="Enter Your Text" id="text"></textarea></td></tr>
+                        <tr><td><button type="submit" value="GENERATE" onclick="QR()" class="btn btn-warning">GENERATE</button></td></tr>
+                    </table>    
+                    </td>
+                </tr>
+            </table>
+    </div>
+    <hr>
+    <script type="text/javascript">
+        function QR(){
+            var api="https://chart.googleapis.com/chart?cht=qr&chs=";
+
+            var image=document.getElementById("img");
+            var text=document.getElementById("text").value;
+            var size=document.getElementById("size").value;
+
+            if (text!=="" && size=="100"){
+                image.src=api+"100x100"+"&chl="+text;
+            }else if(text!=="" && size=="150"){
+                image.src=api+"150x150"+"&chl="+text;
+            }else if(text!=="" && size=="200"){
+                image.src=api+"200x200"+"&chl="+text;
+            }else if (text!=="" && size=="250"){
+                image.src=api+"250x250"+"&chl="+text;
+            }else if (text!=="" && size=="300"){
+                image.src=api+"300x300"+"&chl="+text;
+            }else{
+                alert("Please Enter Text And Select Size");
+            }
+        }
+    </script>
+</body>
+</html>
